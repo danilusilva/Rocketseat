@@ -1,0 +1,173 @@
+@GerenciadorDeLivraria_HostAddress = http://localhost:5137
+
+### Test - Validar se a API está funcionando
+GET {{GerenciadorDeLivraria_HostAddress}}/api/test
+Accept: application/json
+
+###
+
+### GET ALL - Listar todos os livros
+GET {{GerenciadorDeLivraria_HostAddress}}/api/books
+Accept: application/json
+
+###
+
+### POST - Criar um novo livro (Sucesso)
+POST {{GerenciadorDeLivraria_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "titulo": "Clean Code",
+  "autor": "Robert C. Martin",
+  "genero": "Ficção",
+  "preco": 89.90,
+  "estoque": 15
+}
+
+###
+
+### POST - Criar outro livro (Sucesso)
+POST {{GerenciadorDeLivraria_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "titulo": "The Pragmatic Programmer",
+  "autor": "David Thomas",
+  "genero": "Romance",
+  "preco": 75.50,
+  "estoque": 20
+}
+
+###
+
+### POST - Duplicação (Conflito 409)
+POST {{GerenciadorDeLivraria_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "titulo": "Clean Code",
+  "autor": "Robert C. Martin",
+  "genero": "Mistério",
+  "preco": 50.00,
+  "estoque": 5
+}
+
+###
+
+### POST - Título muito curto (Erro 400)
+POST {{GerenciadorDeLivraria_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "titulo": "C",
+  "autor": "Robert C. Martin",
+  "genero": "Ficção",
+  "preco": 89.90,
+  "estoque": 15
+}
+
+###
+
+### POST - Gênero inválido (Erro 400)
+POST {{GerenciadorDeLivraria_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "titulo": "Clean Code",
+  "autor": "Robert C. Martin",
+  "genero": "Horror",
+  "preco": 89.90,
+  "estoque": 15
+}
+
+###
+
+### POST - Preço negativo (Erro 400)
+POST {{GerenciadorDeLivraria_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "titulo": "Clean Code",
+  "autor": "Robert C. Martin",
+  "genero": "Ficção",
+  "preco": -10.00,
+  "estoque": 15
+}
+
+###
+
+### GET BY ID - Obter um livro específico (Sucesso)
+GET {{GerenciadorDeLivraria_HostAddress}}/api/books/00000000-0000-0000-0000-000000000001
+Accept: application/json
+
+###
+
+### GET BY ID - Livro não encontrado (Erro 404)
+GET {{GerenciadorDeLivraria_HostAddress}}/api/books/00000000-0000-0000-0000-000000000999
+Accept: application/json
+
+###
+
+### PUT - Atualizar apenas o preço (Sucesso)
+PUT {{GerenciadorDeLivraria_HostAddress}}/api/books/00000000-0000-0000-0000-000000000001
+Content-Type: application/json
+
+{
+  "preco": 79.90
+}
+
+###
+
+### PUT - Atualizar múltiplos campos (Sucesso)
+PUT {{GerenciadorDeLivraria_HostAddress}}/api/books/00000000-0000-0000-0000-000000000001
+Content-Type: application/json
+
+{
+  "titulo": "Clean Code - Edição Revisada",
+  "preco": 99.90,
+  "estoque": 25
+}
+
+###
+
+### PUT - Sem campos para atualizar (Erro 400)
+PUT {{GerenciadorDeLivraria_HostAddress}}/api/books/00000000-0000-0000-0000-000000000001
+Content-Type: application/json
+
+{
+}
+
+###
+
+### PUT - Livro não encontrado (Erro 404)
+PUT {{GerenciadorDeLivraria_HostAddress}}/api/books/00000000-0000-0000-0000-000000000999
+Content-Type: application/json
+
+{
+  "preco": 99.90
+}
+
+###
+
+### PUT - Duplicação ao atualizar (Erro 409)
+PUT {{GerenciadorDeLivraria_HostAddress}}/api/books/00000000-0000-0000-0000-000000000001
+Content-Type: application/json
+
+{
+  "titulo": "The Pragmatic Programmer",
+  "autor": "David Thomas"
+}
+
+###
+
+### DELETE - Deletar um livro (Sucesso)
+DELETE {{GerenciadorDeLivraria_HostAddress}}/api/books/00000000-0000-0000-0000-000000000001
+Accept: application/json
+
+###
+
+### DELETE - Livro não encontrado (Erro 404)
+DELETE {{GerenciadorDeLivraria_HostAddress}}/api/books/00000000-0000-0000-0000-000000000999
+Accept: application/json
+
+###
