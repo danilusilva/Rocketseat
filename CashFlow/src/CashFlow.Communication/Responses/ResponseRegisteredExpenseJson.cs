@@ -2,5 +2,5 @@
 
 public class ResponseRegisteredExpenseJson
 {
-    public string Title { get; set; } = string.Empty;
+    public string Tittle { get; set; } = string.Empty;
 }

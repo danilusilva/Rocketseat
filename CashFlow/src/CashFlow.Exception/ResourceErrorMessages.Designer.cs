@@ -88,11 +88,11 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title is required..
+        ///   Looks up a localized string similar to Tittle is required..
         /// </summary>
-        public static string TITLE_REQUIRED {
+        public static string TITTLE_REQUIRED {
             get {
-                return ResourceManager.GetString("TITLE_REQUIRED", resourceCulture);
+                return ResourceManager.GetString("TITTLE_REQUIRED", resourceCulture);
             }
         }
         

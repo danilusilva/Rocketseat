@@ -34,12 +34,12 @@ public class RegisterExpenseValidatorTests
     [InlineData("")]
     [InlineData("   ")]
     [InlineData(null)]
-    public void Error_Title_Empty(string? title)
+    public void Error_Title_Empty(string? Title)
     {
         // Arrange
         var validator = new RegisterExpenseValidator();
         var request = RequestRegisterExpenseJsonBuilder.Build();
-        request.Title = title;
+        request.Title = Title;
 
         // Act
         var result = validator.Validate(request);
@@ -48,7 +48,7 @@ public class RegisterExpenseValidatorTests
         result.IsValid.ShouldBeFalse();
         result.Errors.ShouldHaveSingleItem();
         result.Errors.ShouldContain(e =>
-            e.ErrorMessage == ResourceErrorMessages.TITLE_REQUIRED);
+            e.ErrorMessage == ResourceErrorMessages.TITTLE_REQUIRED);
     }
 
     [Fact]
